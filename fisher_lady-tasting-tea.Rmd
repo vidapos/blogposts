@@ -1,0 +1,29 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Vamos pegar os dados.
+```{r}
+library(titanic)
+passageiros <- titanic_train
+head(passageiros)
+```
+
+Não encontrei a Rose e o Jack na lista, mas tudo bem.
+Vamos ver como fica a tabela de contingência.
+
+```{r}
+contingencia <- table(table$Sex, table$Survived)
+contingencia
+```
+
+Certo! Agora vamos fazer o teste de Fisher.
+
+```{r}
+test <- fisher.test(x=passageiros$Sex, y=passageiros$Survived)
+test
+```
+
+É um valor-p bem abaixo de 0.05, rejeitamos a hipótese nula.
+Sexo e sobrevivência não são independentes.
